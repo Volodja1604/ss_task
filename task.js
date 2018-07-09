@@ -1,12 +1,13 @@
-function piphagorTrinity(n) {
+exports.piphagorTrinity = function(n) {
     let arrTrinity = [];
-
+    let i = 0;
     for (c = 1; c <= n; c++) {
         for (b = 1; b <= n; b++) {
             for (a = 1; a <= n; a++) {
                 if (c * c == b * b + a * a) {
 
-                    arrTrinity.push({ "a": a, "b": b, "c": c });
+                    arrTrinity[i] = ({ "a": a, "b": b, "c": c });
+                    i++;
 
                 }
             }
@@ -14,9 +15,9 @@ function piphagorTrinity(n) {
     }
     return arrTrinity;
 }
-console.log(piphagorTrinity(10));
+
 // 178 б
-function multiplicity() {
+exports.multiplicity = function() {
     let count = 0;
     for (let i = 0; i < arguments.length; i++) {
         if (arguments[i] % 3 == 0 && arguments[i] % 5 != 0) {
@@ -25,20 +26,35 @@ function multiplicity() {
     }
     return count;
 }
-console.log(multiplicity(1, 3, 5, 7, 9, 8, 5, 4, 7, 8, 5, 67, 87, 99, 12));
-// 187 в
-function square() {
-	let count=0;
-    for (let i = 0; i < arguments.length; i++) {
-        if (arguments[i]%2==0) {
-        	let item=arguments[i];
-           for (let i = 0; i < arguments.length; i++){
-           	if(arguments[i]==Math.pow(item,2)){
-           		count++;
-           	}
-           }
+
+// 178 в
+exports.square = function() {
+    let arr = [];
+    let content=[];
+    if (process.argv[2]) {
+        arr = (process.argv.slice(2)).map(function(item) { return +item });
+    } 
+    // else {
+    //     var stdin = process.openStdin();
+    //     stdin.addListener("data", function(d) {
+    //         content.push(Number(d.toString().trim()));
+    //         if (d.toString().trim() == '') {
+    //             process.exit();
+    //         }
+    //     });
+
+    // }
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 == 0) {
+            let item = arr[i];
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == item * item) {
+                    count++;
+                }
+            }
         }
     }
+
     return count;
 }
-console.log(square(1,2,4,6,16,36,24,6,8,64));

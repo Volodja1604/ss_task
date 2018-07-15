@@ -1,4 +1,9 @@
 language: node_js
 node_js:
-  - "stable"
-  script: "npm test"
+  - '8'
+before_script:
+  - chmod 0777 ./node_modules/.bin/eslint
+  - chmod 0777 ./node_modules/.bin/jasmine
+script:
+  - npm run linter
+  - npm test
